@@ -16,7 +16,7 @@ export const AddCategory = ({setCategories}) => {
         if(inputValue.trim().length>2){
             //no puedo hacer setCategories(["Risas",...categories])
             //porque no tengo categories en este componente, entonces:
-            setCategories( cats =>[...cats,inputValue])
+            setCategories( cats =>[inputValue,...cats,])
             setInputValue("")
         }
         

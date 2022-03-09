@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from 'react'
+import { getGifs } from '../helpers/GetGifs';
+import { GifGridItem } from './GifGridItem';
 
 export const GifGrid = ({category}) => {
+    const [images, setImages] = useState([])
     //useEffect para que no se renderice todo ante algún cambio
     //Se renderiza pero de manera condicional
-    const [counter, setCounter] = useState(0)
     useEffect( ()=>{
-        getGifs();
-    },[])
+        //getGifs();
+        //Ahora recibe category y retorna una promesa, por lo que necesita un .then
+        getGifs(category)
+            .then( img => {setImages(img)})
+    },[category]) //Si la categoría cambia, vuelve a ejecutar el effect
     //El segundo parámetro es un arreglo de dependencias
     //[] = no tiene dependencias, se ejecuta una única vez
+    //encodeURI saco espacios y los reemplaza por %20
+    //Los helpers son funciones que hacen un trabajo, pueden recibir información
+    /*
     const getGifs = async() =>{
-        const url = "https://api.giphy.com/v1/gifs/trending?q=Marvel&limit=10&api_key=q3FECLLySEElFd3y9fvrgQ0VU3RGHxVy";
+        const url = `https://api.giphy.com/v1/gifs/search?q=${encodeURI(category)}&limit=10&api_key=q3FECLLySEElFd3y9fvrgQ0VU3RGHxVy`;
         const resp = await fetch(url);
         const {data} = await resp.json();//Obtengo la data dentro de esa data
         const gifs = data.map(img =>{
@@ -22,13 +30,31 @@ export const GifGrid = ({category}) => {
         })
         
         console.log(gifs)
+        setImages(gifs);
     }
+    */
     //getGifs();
   return (
-    <>
+      <>
         <h3>{category}</h3>
-        <h1>{counter}</h1>
-        <button onClick={()=>{setCounter(counter+1)}}></button>
+        <div className='card-grid'>
+
+                {
+                    /*[images.map(img=>{
+                        return <li key={img.id}>{img.title}</li> 
+                    })]*/
+                    //images.map(({id,title})=>{
+                    images.map( img =>(
+                        <GifGridItem 
+                            key={img.id}
+                            {...img
+                                //Manda cada una de las propiedades de las
+                                //imágenes como una propiedad independiente
+                            }
+                        />
+                    ))
+                }
+        </div>
     </>
   )
 }
