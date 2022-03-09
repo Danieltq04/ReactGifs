@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { getGifs } from '../helpers/GetGifs';
-import { GifGridItem } from './GifGridItem';
+import React from 'react'
+import { useFetchGifs } from '../hooks/useFetchGifs'
+// import { getGifs } from '../helpers/GetGifs';
+// import { GifGridItem } from './GifGridItem';
 
 export const GifGrid = ({category}) => {
-    const [images, setImages] = useState([])
+    /*const [images, setImages] = useState([])
     //useEffect para que no se renderice todo ante algún cambio
     //Se renderiza pero de manera condicional
     useEffect( ()=>{
@@ -12,6 +13,7 @@ export const GifGrid = ({category}) => {
         getGifs(category)
             .then( img => {setImages(img)})
     },[category]) //Si la categoría cambia, vuelve a ejecutar el effect
+    */
     //El segundo parámetro es un arreglo de dependencias
     //[] = no tiene dependencias, se ejecuta una única vez
     //encodeURI saco espacios y los reemplaza por %20
@@ -34,15 +36,20 @@ export const GifGrid = ({category}) => {
     }
     */
     //getGifs();
+
+
+    const {data,loading} = useFetchGifs();
   return (
       <>
         <h3>{category}</h3>
-        <div className='card-grid'>
+
+
+        {/* {<div className='card-grid'>
 
                 {
-                    /*[images.map(img=>{
-                        return <li key={img.id}>{img.title}</li> 
-                    })]*/
+                    //[images.map(img=>{
+                    //    return <li key={img.id}>{img.title}</li> 
+                    //})]
                     //images.map(({id,title})=>{
                     images.map( img =>(
                         <GifGridItem 
@@ -54,7 +61,7 @@ export const GifGrid = ({category}) => {
                         />
                     ))
                 }
-        </div>
+        </div>} */}
     </>
   )
 }
