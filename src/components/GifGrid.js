@@ -1,7 +1,7 @@
 import React from 'react'
 import { useFetchGifs } from '../hooks/useFetchGifs'
-// import { getGifs } from '../helpers/GetGifs';
-// import { GifGridItem } from './GifGridItem';
+import { getGifs } from '../helpers/GetGifs';
+import { GifGridItem } from './GifGridItem';
 
 export const GifGrid = ({category}) => {
     /*const [images, setImages] = useState([])
@@ -38,20 +38,22 @@ export const GifGrid = ({category}) => {
     //getGifs();
 
 
-    const {data,loading} = useFetchGifs();
+    const {data:images,loading} = useFetchGifs(category);
+    //Recibe data pero le doy nombre images
   return (
       <>
         <h3>{category}</h3>
 
+        { loading && <p>Loading</p> /*Si es false no muestra nada*/}
 
-        {/* {<div className='card-grid'>
+        <div className='card-grid'>
 
                 {
                     //[images.map(img=>{
                     //    return <li key={img.id}>{img.title}</li> 
                     //})]
                     //images.map(({id,title})=>{
-                    images.map( img =>(
+                        images.map( img =>(
                         <GifGridItem 
                             key={img.id}
                             {...img
@@ -61,7 +63,7 @@ export const GifGrid = ({category}) => {
                         />
                     ))
                 }
-        </div>} */}
+        </div>
     </>
   )
 }
