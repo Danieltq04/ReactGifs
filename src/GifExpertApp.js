@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import PropTypes from 'prop-types'
 import { AddCategory } from './components/AddCategory';
+import { GifGrid } from './components/GifGrid';
 
 
-const GifExpertApp = ({})=>{
+export const GifExpertApp = ()=>{
 
-    const [categories, setCategories] = useState(["Memes","Reacciones","Marvel"])
+    const [categories, setCategories] = useState(["Marvel"])
     
     
     /*const handleAdd = ()=>{
@@ -20,15 +20,18 @@ const GifExpertApp = ({})=>{
 
         <ol>
             {
-                categories.map( category =>{
-                    return <li key={ category }> { category }</li>
-                })
+                categories.map( category =>(
+                    <GifGrid 
+                        key = {category}
+                        category = {category}
+                        />
+                    )
+                )
             }
         </ol>
         
         </>
     )
 }
-
 
 export default GifExpertApp;
