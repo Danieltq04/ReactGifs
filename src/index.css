@@ -86,6 +86,7 @@ header, footer{
 }
 
 main{
+  min-height: 80vh;
   padding: 60px;
 }
 
