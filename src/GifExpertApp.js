@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AddCategory } from "./components/AddCategory";
 import { Footer } from "./components/Footer";
 import { GifGrid } from "./components/GifGrid";
-import { HeaderComponent } from "./components/HeaderComponent";
+import { Header } from "./components/Header";
 
 export const GifExpertApp = () => {
   const [categories, setCategories] = useState(["Marvel"]);
@@ -12,7 +12,7 @@ export const GifExpertApp = () => {
     }*/
   return (
     <>
-      <HeaderComponent/>
+      <Header/>
 
       <main>
         <AddCategory setCategories={setCategories} />

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const HeaderComponent = () => {
+export const Header = () => {
   return (
     <header>
         <h1>Buscador de GIFs</h1>
